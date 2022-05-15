@@ -1,2 +1,12 @@
 # Animal-Image-Classification
-University project implementing a fuzzy KNN and an AlexNet CNN algorithm to classify multiple classes of animals.
+University project implementing an AlexNet CNN algorithm to classify multiple classes of animals.
+
+The software used to implement the AlexNet CNN was Python. Tensorflow, Keras, NumPy, and splitfolders were used in order to load the image data set into Python and then
+create and train the CNN. The first step involved splitfolders to be used on the original data set in order to split the whole data set into 80% training data, 10% testing data, and 10% validation data. The validation data will be used to evaluate the model while it trains, and the testing data will be used to evaluate the model once it is finished training. Next, the images pre-processed using Keras. The training data set was re-scaled, sheared, zoomed, and flipped. Whereas the testing and validation data sets were only re-scaled. Using Keras’ flow-from-directory function, the images were put into RGB, categorized by folder name, and randomly shuffled.
+Next, creating the actual model using Tensorflow and Keras. A sequential model was created, and layers can continuously be added to this sequential model. Using the AlexNet architecture as a guide, the model was built. This includes 5 convolutional layers with differing filter sizes, 3 max-pooling layers with 3x3 filters and a stride of 2, 3 fully-connected layers with the final fully-connected layer being a soft-max layer with the amount of classes as the input. The activation function used in the AlexNet architecture is ReLU, this adds an element of non-linearity.
+
+The model was compiled using categorical crossentropy to calculate loss and Adam was used as the optimizer in the model. Next, the model was fit using the training data
+and simultaneously evaluated with the validation data. The concept of early stopping was implemented before fitting in order to use it as a keras callback. Early stopping is utilized to prevent over-fitting the model on the training data set by monitoring validation loss and stopping the training early if the validation loss starts to increase. In the study, 30 epochs were used in the model fitting, but the early stopping function was called at epoch 27. The validation method that was utilized was the 10% of the data set that was held out in order to monitor the model while it was training. Lastly, the model was evaluated using the held out testing
+data set and the model loss and accuracy from this was used as the final scoring of the AlexNet CNN.
+
+The final model was trained using the Kaggle GPU.
